@@ -18,6 +18,9 @@ public class EnitityRepo implements UserDAO {
     public EnitityRepo(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
+    public EnitityRepo(){
+
+    }
 
     @Override
     @Transactional
@@ -37,4 +40,13 @@ public class EnitityRepo implements UserDAO {
         return entityManager.createQuery("FROM User", User.class).getResultList();
 
     }
+    @Override
+    public void find(String email, String password) {
+        entityManager.createQuery("FROM User WHERE email = :email AND password = :password", User.class)
+        .setParameter("email", email)
+        .setParameter("password", password)
+        .getFirstResult();
+        
+    }
+    
 }
