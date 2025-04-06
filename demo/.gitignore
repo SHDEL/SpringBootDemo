@@ -31,3 +31,9 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Allow src code files to be tracked
+!**/src/main/**
+!**/src/test/**
+
+
