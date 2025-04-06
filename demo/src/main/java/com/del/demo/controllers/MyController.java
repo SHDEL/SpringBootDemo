@@ -24,10 +24,10 @@ public class MyController {
     public String about(){
         return "About Us";
     }
-    @GetMapping("/userinfo")
-    public List<User> getAllUser(){
-        return enitityRepo.findAll();
-    }
+    // @GetMapping("/userinfo")
+    // public List<User> getAllUser(){
+    //     return enitityRepo.findAll();
+    // }
     
 
 }

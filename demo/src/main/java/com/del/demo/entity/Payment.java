@@ -2,23 +2,48 @@ package com.del.demo.entity;
 
 import java.time.LocalDateTime;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.del.demo.repository.EnitityRepo;
+import com.del.demo.repository.EntityService;
+import com.del.demo.repository.PaymentDAO;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityManager;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.transaction.Transactional;
 
-// @Entity
-// @Table(name = "Payment")
+@Entity
+@Table(name = "Payment")
 public class Payment {
-    // @Id
-    // @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int paymentID;
+
+    @OneToOne
+    @JoinColumn(name = "userid")
     private User user;
+
+    @OneToOne
+    @JoinColumn(name = "orderid")
     private Order order;
+    
+    @Column(name = "amount")
     private Double amount;
+
+    @Column(name = "paymentDate")
     private LocalDateTime paymentDate;
+
+    @Column(name = "paymentMethod")
     private String paymentMethod;
+
+    @Column(name = "status")
     private String status;
 
     public Payment(User user, Order order, Double price, String method){
@@ -28,7 +53,6 @@ public class Payment {
         this.paymentDate = LocalDateTime.now();
         this.paymentMethod = method;
         this.status = "waiting for payment";
-
     }
     
     public int getPaymentID() {
@@ -83,16 +107,24 @@ public class Payment {
         this.status = status;
     }
 
-    public boolean processPayment(){
+    public Enrollments processPayment(EntityService entityService){
         System.out.println("**************Payment Process**************");
         try {
             Thread.sleep(2000);
             System.out.println("Payment Success");
-            return true;
+            this.status = "Payment Success";
+            
+            Enrollments enrollments = new Enrollments(user);
+            for (OrderItem item : order.getItemsList()){
+                    enrollments.enrollCourse(item.getCourse(), this);
+            }
+            entityService.saveEnroll(enrollments);
+            return enrollments;
+            
         } catch (InterruptedException e) {
             System.out.println("Payment not success");
             this.status = "Payment not success";
-            return false;
+            return null;
         }
     }
 

@@ -7,42 +7,52 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
-// @Entity
-// @Table(name="Course")
+@Entity
+@Table(name="Course")
 public class Course {
-    // @Id
-    // @GeneratedValue(strategy = GenerationType.IDENTITY)
-    // @Column(name = "courseID")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "courseID")
     private int courseID;
 
-    // @Column(name = "title")
+    @Column(name = "title")
     private String title;
 
-    // @Column(name = "description")
+    @Column(name = "description")
     private String description;
 
-    // @Column(name = "price")
+    @Column(name = "price")
     private Double price;
 
-    // @Column(name = "isFree")
+    @Column(name = "isFree")
     private boolean isFree;
 
-    // @Column(name = "instructor")
+    @OneToOne
+    @JoinColumn(name = "userid")
     private User instructor;
 
-    // @Column(name = "createdAt")
+    @Column(name = "createdAt")
     private LocalDateTime createdAt;
 
-    // @Column(name = "status")
+    @Column(name = "status")
     private String status;
 
-    // @Column(name = "totalStudent")
+    @Column(name = "totalStudent")
     private int totalStudent;
 
     public Course(int coureid, String title, String description, Double price, User instructor){
         this.courseID = coureid;
+        this.title = title;
+        this.description = description;
+        this.price = price;
+        this.instructor = instructor;
+        this.createdAt = LocalDateTime.now();
+    }
+    public Course(String title, String description, Double price, User instructor){
         this.title = title;
         this.description = description;
         this.price = price;

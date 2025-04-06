@@ -4,32 +4,44 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.del.demo.repository.EnrollDAO;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityManager;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
+import jakarta.transaction.Transactional;
 
-// @Entity
-// @Table(name="Enrollments")
+@Entity
+@Table(name="Enrollments")
 public class Enrollments {
-    // @Id
-    // @GeneratedValue(strategy = GenerationType.IDENTITY)
-    // @Column(name = "enrollmentsid")
-    private int enrollmentsID;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "enrollmentid")
+    private int enrollmentID;
 
-    // @OneToOne(fetch = FetchType.LAZY)
-    // @JoinColumn(name = "user_id", unique = true, nullable = false)
+    @OneToOne
+    @JoinColumn(name = "userid")
     private User user;
 
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+        name = "enrollmentsCourses", // ตารางกลาง
+        joinColumns = @JoinColumn(name = "enrollmentid"),
+        inverseJoinColumns = @JoinColumn(name = "courseid")
+    )
     private List<Course> courseList;
 
-    // @Column(name = "enrolledAt")
+    @Column(name = "enrolledAt")
     private LocalDateTime enrolledAt;
 
     public Enrollments (){
@@ -39,11 +51,10 @@ public class Enrollments {
         this.user = user;
         courseList = new ArrayList<>();
         enrolledAt = LocalDateTime.now();
-        System.out.println("Enroll Success");
     }
 
     public int getEnrollmentsID() {
-        return enrollmentsID;
+        return enrollmentID;
     }
     public User getUser() {
         return user;
@@ -63,9 +74,10 @@ public class Enrollments {
     public void setEnrolledAt(LocalDateTime enrolledAt) {
         this.enrolledAt = enrolledAt;
     }
-    public void enrollCourse(Course course, boolean isPaid){
-        if (isPaid){
+    public void enrollCourse(Course course, Payment payment){
+        if (payment.getStatus().equals("Payment Success")){
             courseList.add(course);
+            System.out.println("enroll successful");
         }
         else{
             System.out.println("enroll failed your payment is not success");
@@ -82,7 +94,7 @@ public class Enrollments {
         // sb.append(separator);
         
         // เพิ่มข้อมูลพื้นฐานของ Enrollment
-        sb.append(String.format(format, "Enroll ID", enrollmentsID));
+        sb.append(String.format(format, "Enroll ID", enrollmentID));
         sb.append(String.format(format, "User ID", user.getId()));
         sb.append(String.format(format, "UserName", user.getUserName()));
         sb.append(String.format(format, "Enrolled At", enrolledAt));
