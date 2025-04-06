@@ -1,5 +1,7 @@
 package com.del.demo.repository;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,15 +34,22 @@ public class EntityService {
     public void saveUser(User user){
         userDAO.saveUser(user);
     }
+    public void updateUser(User user){
+        User u = userDAO.findUser(user.getId());
+        u = user;
+        userDAO.update(u);
+    }
 
     public void saveCourse(Course course){
         courseDAO.saveCourse(course);
+    }
+    public List<Course> findAllCourse(){
+        return courseDAO.getAllCourse();
     }
 
     public void saveItem(OrderItem item){
         itemDAO.saveItem(item);
     }
-
     public void saveOrder(Order order){
         orderDAO.saveOrder(order);
     }

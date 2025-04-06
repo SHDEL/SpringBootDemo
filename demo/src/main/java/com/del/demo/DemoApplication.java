@@ -40,8 +40,8 @@ public class DemoApplication {
 		entityService.saveUser(u2);
 		entityService.saveUser(u3);
 
-		Course c1 = new Course("Java for Beginners", "เรียนรู้พื้นฐาน Java ตั้งแต่ 0", 19.99, u2);
-		Course c2 = new Course("Spring Boot Crash Course", "สร้าง API ด้วย Spring Boot", 29.99, u3);
+		Course c1 = new Course("Java for Beginners", "เรียนรู้พื้นฐาน Java ตั้งแต่ 0", 19.99, u2, "https://i.ytimg.com/vi/xTtL8E4LzTQ/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCVVzrKMKtkV3mwCev905Xq6fp4Zg");
+		Course c2 = new Course("Spring Boot Crash Course", "สร้าง API ด้วย Spring Boot", 29.99, u3, "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3Dg7gYh-eryXA&psig=AOvVaw2xSyQd7dO_Xcbaz6cOafIc&ust=1744046610491000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCOCtsIf2w4wDFQAAAAAdAAAAABAg");
 		entityService.saveCourse(c1);
 		entityService.saveCourse(c2);
 		System.out.println("**************upload Course already**************");
@@ -78,8 +78,8 @@ public class DemoApplication {
 		System.out.println("**************add new User already**************");
 		System.out.println(u1);
 
-		Course c1 = new Course("Java for Beginners", "เรียนรู้พื้นฐาน Java ตั้งแต่ 0", 19.99, u2);
-		Course c2 = new Course("Spring Boot Crash Course", "สร้าง API ด้วย Spring Boot", 29.99, u3);
+		Course c1 = new Course("Java for Beginners", "เรียนรู้พื้นฐาน Java ตั้งแต่ 0", 19.99, u2,"https://i.ytimg.com/vi/xTtL8E4LzTQ/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCVVzrKMKtkV3mwCev905Xq6fp4Zg");
+		Course c2 = new Course("Spring Boot Crash Course", "สร้าง API ด้วย Spring Boot", 29.99, u3, "https://i.ytimg.com/vi/g7gYh-eryXA/hqdefault.jpg");
 		entityService.saveCourse(c1);
 		entityService.saveCourse(c2);
 		System.out.println("**************upload Course already**************");

@@ -17,7 +17,6 @@ import jakarta.transaction.Transactional;
 
 @Repository
 public class EnitityRepo implements UserDAO, EnrollDAO, CourseDAO, OrderDAO, ItemDAO, PaymentDAO{
-
     private EntityManager entityManager;
 
     @Autowired
@@ -49,9 +48,11 @@ public class EnitityRepo implements UserDAO, EnrollDAO, CourseDAO, OrderDAO, Ite
         throw new UnsupportedOperationException("Unimplemented method 'findAll'");
     }
     @Override
+    @Transactional
     public void update(User user) {
         entityManager.merge(user);
     }
+    
     // Payment
     @Override
     @Transactional
@@ -98,6 +99,10 @@ public class EnitityRepo implements UserDAO, EnrollDAO, CourseDAO, OrderDAO, Ite
     public void deleteCourse(int id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'deleteCourse'");
+    }
+    @Override
+    public List<Course> getAllCourse(){
+        return entityManager.createQuery("FROM Course", Course.class).getResultList();
     }
 
     // Enrollments

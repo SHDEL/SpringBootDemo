@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.del.demo.repository.EnitityRepo;
 import com.del.demo.repository.EntityService;
 import com.del.demo.repository.PaymentDAO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -98,6 +99,12 @@ public class User {
         return userType;
     }
 
+    public void setEnrollments(Enrollments enrollments) {
+        this.enrollments = enrollments;
+    }
+    public Enrollments getEnrollments() {
+        return enrollments;
+    }
     public void setId(int id) {
         this.userid = id;
     }
@@ -144,8 +151,9 @@ public class User {
         entityService.savePayment(payment);
         System.out.println(payment.getPaymentDetails());
         
-        enrollments = payment.processPayment(entityService);
-        if (enrollments != null){ 
+        this.enrollments = payment.processPayment(entityService);
+        if (this.enrollments != null){ 
+            entityService.updateUser(this);
             System.out.println("**************Enrollments Details**************");
             System.out.println(enrollments.getEnrollmentsDetails());
         }
@@ -154,6 +162,7 @@ public class User {
             
         }
     }
+    @JsonIgnore
     public List<Course> getEnrolledCourse(){
         return enrollments.getCourseList();
     }

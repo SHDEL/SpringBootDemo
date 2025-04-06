@@ -44,6 +44,9 @@ public class Course {
     @Column(name = "totalStudent")
     private int totalStudent;
 
+    @Column(name = "coursePictureURL")
+    private String pictureURL;
+
     public Course(int coureid, String title, String description, Double price, User instructor){
         this.courseID = coureid;
         this.title = title;
@@ -52,12 +55,23 @@ public class Course {
         this.instructor = instructor;
         this.createdAt = LocalDateTime.now();
     }
-    public Course(String title, String description, Double price, User instructor){
+    public Course(String title, String description, Double price, User instructor, String pictureURL){
         this.title = title;
         this.description = description;
         this.price = price;
         this.instructor = instructor;
         this.createdAt = LocalDateTime.now();
+        this.totalStudent = 0;
+        this.pictureURL = pictureURL;
+        if (price >= 0){
+            this.isFree = false;
+        }
+        else{
+            this.isFree = true;
+        }
+    }
+    public Course(){
+
     }
 
     public int getCourseID() {
@@ -87,6 +101,9 @@ public class Course {
     public int getTotalStudent() {
         return totalStudent;
     }
+    public String getPictureURL() {
+        return pictureURL;
+    }
     public void setTitle(String title) {
         this.title = title;
     }
@@ -111,6 +128,9 @@ public class Course {
     public void setTotalStudent(int totalStudent) {
         this.totalStudent = totalStudent;
     }
+    public void setPictureURL(String pictureURL) {
+        this.pictureURL = pictureURL;
+    }
     public String getCourseDetails() {
         String format = "| %-10s | %-20s | %-20s | %-25s | %-15s | %-10s | %-20s |\n";
         String separator = "+------------+----------------------+----------------------+---------------------------+-----------------+------------+----------------------+\n";
@@ -131,6 +151,7 @@ public class Course {
                 + ", isFree=" + isFree + ", instructor=" + instructor + ", createdAt=" + createdAt + ", status="
                 + status + ", totalStudent=" + totalStudent + "]";
     }
+    
     
 
     

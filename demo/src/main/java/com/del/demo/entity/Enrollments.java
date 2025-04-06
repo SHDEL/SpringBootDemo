@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.del.demo.repository.EnrollDAO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -16,6 +17,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
@@ -33,7 +35,8 @@ public class Enrollments {
     @JoinColumn(name = "userid")
     private User user;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY)
     @JoinTable(
         name = "enrollmentsCourses", // ตารางกลาง
         joinColumns = @JoinColumn(name = "enrollmentid"),
@@ -59,6 +62,8 @@ public class Enrollments {
     public User getUser() {
         return user;
     }
+    
+    @JsonIgnore
     public List<Course> getCourseList() {
         return courseList;
     }
@@ -68,6 +73,7 @@ public class Enrollments {
     public void setUser(User user) {
         this.user = user;
     }
+    @JsonIgnore
     public void setCourseList(List<Course> courseList) {
         this.courseList = courseList;
     }
@@ -76,7 +82,7 @@ public class Enrollments {
     }
     public void enrollCourse(Course course, Payment payment){
         if (payment.getStatus().equals("Payment Success")){
-            courseList.add(course);
+            this.courseList.add(course);
             System.out.println("enroll successful");
         }
         else{
@@ -87,11 +93,6 @@ public class Enrollments {
         StringBuilder sb = new StringBuilder();
         String format = "| %-15s | %-50s |\n";  // กำหนดความกว้างของคอลัมน์
         String separator = "+-----------------+----------------------------------------------------+\n";
-    
-        // // เพิ่ม Header
-        // sb.append(separator);
-        // sb.append(String.format(format, "Field", "Details"));
-        // sb.append(separator);
         
         // เพิ่มข้อมูลพื้นฐานของ Enrollment
         sb.append(String.format(format, "Enroll ID", enrollmentID));
