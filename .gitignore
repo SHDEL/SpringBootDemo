@@ -1,8 +1,11 @@
 HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
-!**/src/main/java/com/del/demo/**/target/
-!**/src/main/resources/**/target/
+!demo/src/main/java/com/del/demo/controllers
+!demo/src/main/java/com/del/demo/entity
+!demo/src/main/java/com/del/demo/repository
+!demo/src/main/resources/static
+!demo/src/main/resources/**/target/
 !**/src/test/**/target/
 
 ### STS ###
