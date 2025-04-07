@@ -3,8 +3,6 @@ package com.del.demo.entity;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.del.demo.repository.EnrollDAO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;

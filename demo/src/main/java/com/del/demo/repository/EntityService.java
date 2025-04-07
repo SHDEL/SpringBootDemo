@@ -1,6 +1,7 @@
 package com.del.demo.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,51 +14,57 @@ import com.del.demo.entity.Payment;
 import com.del.demo.entity.User;
 
 @Service
-public class EntityService {
+public class EntityService{
     @Autowired
-    private UserDAO userDAO;
-
-    @Autowired
-    private CourseDAO courseDAO;
+    private UserRepo userRepo;
 
     @Autowired
-    private ItemDAO itemDAO;
+    private CourseRepo courseRepo;
 
     @Autowired
-    private OrderDAO orderDAO;
+    private ItemRepo itemRepo;
 
     @Autowired
-    private PaymentDAO paymentDAO;
+    private OrderRepo orderRepo;
 
-    @Autowired EnrollDAO enrollDAO;
+    @Autowired
+    private PaymentRepo paymentRepo;
 
-    public void saveUser(User user){
-        userDAO.saveUser(user);
-    }
-    public void updateUser(User user){
-        User u = userDAO.findUser(user.getId());
-        u = user;
-        userDAO.update(u);
+    @Autowired 
+    private EnrollRepo enrollRepo;
+
+    public User saveUser(User user){
+        return userRepo.save(user);
     }
 
-    public void saveCourse(Course course){
-        courseDAO.saveCourse(course);
+    public Course saveCourse(Course course){
+        return courseRepo.save(course);
+    }
+    public Course findCourse(int id){
+        Optional<Course> result = courseRepo.findById(id);
+        if (result.isPresent()){
+            return result.get();
+        }
+        else{
+            throw new RuntimeException("ไม่พบอข้อมูล Course " + id);
+        }
     }
     public List<Course> findAllCourse(){
-        return courseDAO.getAllCourse();
+        return courseRepo.findAll();
     }
+    
 
-    public void saveItem(OrderItem item){
-        itemDAO.saveItem(item);
+    public OrderItem saveItem(OrderItem item){
+        return itemRepo.save(item);
     }
-    public void saveOrder(Order order){
-        orderDAO.saveOrder(order);
+    public Order saveOrder(Order order){
+        return orderRepo.save(order);
     }
-    public void savePayment(Payment payment){
-        paymentDAO.savePayment(payment);
+    public Payment savePayment(Payment payment){
+        return paymentRepo.save(payment);
     }
-    public void saveEnroll(Enrollments enrollments){
-        enrollDAO.saveEnroll(enrollments);
+    public Enrollments saveEnroll(Enrollments enrollments){
+        return enrollRepo.save(enrollments);
     }
     
 }

@@ -5,9 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.del.demo.repository.EnitityRepo;
 import com.del.demo.repository.EntityService;
-import com.del.demo.repository.PaymentDAO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
@@ -139,13 +137,13 @@ public class User {
         sb.append(separator);
         sb.append(String.format(format, userid, username, name, email, password, userType, createdAt));
         sb.append(separator);
-
         return sb.toString();
     }
     public void purchaseOrder(Order order, EntityService entityService){
         System.out.println("**************Create Payment already**************");
 
         order.setStatus("Order Confirm");
+        entityService.saveOrder(order);
 
         Payment payment = new Payment(this, order, order.getTotalAmount(), "Credit Card" );
         entityService.savePayment(payment);
@@ -153,7 +151,7 @@ public class User {
         
         this.enrollments = payment.processPayment(entityService);
         if (this.enrollments != null){ 
-            entityService.updateUser(this);
+            entityService.saveUser(this);
             System.out.println("**************Enrollments Details**************");
             System.out.println(enrollments.getEnrollmentsDetails());
         }

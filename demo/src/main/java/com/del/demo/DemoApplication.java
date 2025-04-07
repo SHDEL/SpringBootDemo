@@ -12,14 +12,7 @@ import com.del.demo.entity.Order;
 import com.del.demo.entity.OrderItem;
 import com.del.demo.entity.Payment;
 import com.del.demo.entity.User;
-import com.del.demo.repository.CourseDAO;
-import com.del.demo.repository.EnrollDAO;
 import com.del.demo.repository.EntityService;
-import com.del.demo.repository.ItemDAO;
-import com.del.demo.repository.OrderDAO;
-import com.del.demo.repository.PaymentDAO;
-import com.del.demo.repository.UserDAO;
-
 import jakarta.transaction.Transactional;
 
 @SpringBootApplication
@@ -115,29 +108,4 @@ public class DemoApplication {
 			test2();
 		};
 	}
-	// public void insertUser(User user){
-	// 	userDAO.saveUser(user);
-	// 	System.out.println("Insert user Success");
-	// }
-	// public void insertCourse(Course course){
-	// 	courseDAO.saveCourse(course);
-	// 	System.out.println("Insert course Success");
-	// }
-	// public void insertItem(OrderItem item){
-	// 	itemDAO.saveItem(item);
-	// 	System.out.println("Insert OrderItem Success");
-	// }
-	// public void insertOrder(Order order){
-	// 	orderDAO.saveOrder(order);
-	// 	System.out.println("Insert Order Success");
-	// }
-	// public void insertPayment(Payment payment){
-	// 	paymentDAO.savePayment(payment);
-	// 	System.out.println("Insert Payment Success");
-	// }
-	// public void insertEnrollments(Enrollments enrollments){
-	// 	enrollDAO.saveEnroll(enrollments);
-	// 	System.out.println("Insert Enrollments Success");
-	// }
-
 }

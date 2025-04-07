@@ -1,4 +1,5 @@
 
+/* index.html */
 .search-field{
     width: 100%;
     max-width: 400px;
@@ -67,6 +68,15 @@
     gap: 4%;
     margin-top: 2%;
 }
+.card-button{
+    border: none;
+    background: none;
+    text-align: left;
+}
+.card-button:hover{
+    transform: translateY(-5px);
+    transition: all 0.3s ease;
+}
 .card{
     width: 400px;
     border-radius: 16px !important;
@@ -77,5 +87,28 @@
     width: 100%;
     height: auto;
     max-height: 215px;
+}
+
+/* course.html */
+.img-fluid{
+    max-width: 720px ; 
+    border-radius: 16px;
+}
+.enroll-box{
+    border-radius: 16px; 
+    background-color: white; 
+    padding: 2%;
+}
+.price-text{
+    font-weight: bold; 
+    font-size:larger;
+    color: #f26a17 !important;
+}
+.btn-enroll{
+    background-color: #f26a17 !important; 
+    color: white !important;
+}
+.btn-enroll:hover{
+    background-color:#d65e13 !important;
 }
 

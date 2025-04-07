@@ -24,6 +24,10 @@ public class OrderItem {
     @Column(name = "price")
     private Double price;
 
+    public OrderItem(){
+        
+    }
+    
     public OrderItem(int itemID, Course course, Double price){
         this.itemID = itemID;
         this.course = course;

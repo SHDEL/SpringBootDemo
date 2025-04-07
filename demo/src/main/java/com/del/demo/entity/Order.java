@@ -41,6 +41,10 @@ public class Order {
     )
     private List<OrderItem> itemsList = new ArrayList<>();
 
+    public Order(){
+        
+    }
+
     public Order(int orderID, Double totalAmount, OrderItem items){
         this.orderID = orderID;
         this.totalAmount = totalAmount;

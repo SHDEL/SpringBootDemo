@@ -4,9 +4,7 @@ import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.del.demo.repository.EnitityRepo;
 import com.del.demo.repository.EntityService;
-import com.del.demo.repository.PaymentDAO;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -45,6 +43,10 @@ public class Payment {
 
     @Column(name = "status")
     private String status;
+
+    public Payment(){
+        
+    }
 
     public Payment(User user, Order order, Double price, String method){
         this.user = user;
@@ -113,7 +115,8 @@ public class Payment {
             Thread.sleep(2000);
             System.out.println("Payment Success");
             this.status = "Payment Success";
-            
+            entityService.savePayment(this);
+
             Enrollments enrollments = new Enrollments(user);
             for (OrderItem item : order.getItemsList()){
                     enrollments.enrollCourse(item.getCourse(), this);

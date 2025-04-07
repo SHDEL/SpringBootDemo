@@ -3,19 +3,6 @@ window.onload = async function() {
     await getAllCourse();
 }
 
-// fetch('http://localhost:8080/api/userinfo')
-
-//     .then(response => response.json())
-//     .then(data => {
-//         console.log(data);
-//         const list = document.getElementById('userlist');
-//         data.forEach(user => {
-//             const li = document.createElement('li');
-//             li.textContent = `ID: ${user.id} | Name: ${user.name} | Email: ${user.email} | Password: ${user.passwd} | UserType: ${user.type}`
-//             list.appendChild(li);
-//         });
-//     });
-
 async function getAllCourse(){
     try {
         const response = await fetch("http://localhost:8080/api/course");
@@ -31,6 +18,12 @@ async function getAllCourse(){
         const courseList = document.getElementById("card-content");
         courseList.innerHTML = ""; // ล้างก่อนเพิ่มใหม่
         data.forEach(course => {
+            const buttonCard = document.createElement("button");
+            buttonCard.classList.add("card-button");
+            buttonCard.addEventListener("click", () =>{
+                window.location.href = `course.html?courseID=${course.courseID}`;
+            });
+
             const cardDiv = document.createElement("div");
             cardDiv.classList.add("card");
 
@@ -72,7 +65,9 @@ async function getAllCourse(){
             cardDiv.appendChild(cardImg);
             cardDiv.appendChild(cardBody);
 
-            courseList.appendChild(cardDiv)
+            buttonCard.appendChild(cardDiv);
+            courseList.appendChild(buttonCard);
+            
             
         });
 
