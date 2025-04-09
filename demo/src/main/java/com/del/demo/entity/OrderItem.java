@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
@@ -17,7 +18,7 @@ public class OrderItem {
     @Column(name = "orderItemid")
     private int itemID;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "courseid")
     private Course course;
 
@@ -37,6 +38,9 @@ public class OrderItem {
         this.course = course;
         this.price = price;
     }
+    public void setId(int id){
+        this.itemID = id;
+    }
     public void setCourse(Course course) {
         this.course = course;
     }
@@ -54,6 +58,10 @@ public class OrderItem {
     }
     public String getOrderItemDetails() {
         return "OrderItem [itemID=" + itemID + ", Course=" + course + ", price=" + price + "]";
+    }
+
+    public void setItemID(int itemID) {
+        this.itemID = itemID;
     }
     
     

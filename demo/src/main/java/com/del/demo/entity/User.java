@@ -100,6 +100,7 @@ public class User {
     public void setEnrollments(Enrollments enrollments) {
         this.enrollments = enrollments;
     }
+    @JsonIgnore
     public Enrollments getEnrollments() {
         return enrollments;
     }
@@ -139,6 +140,7 @@ public class User {
         sb.append(separator);
         return sb.toString();
     }
+    @JsonIgnore
     public void purchaseOrder(Order order, EntityService entityService){
         System.out.println("**************Create Payment already**************");
 

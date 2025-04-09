@@ -36,6 +36,18 @@ public class EntityService{
     public User saveUser(User user){
         return userRepo.save(user);
     }
+    public User findUserByID(int id){
+        Optional<User> result = userRepo.findById(id);
+        if (result.isPresent()){
+            return result.get();
+        }
+        else{
+            throw new RuntimeException("ไม่พบอข้อมูล Course " + id);
+        }
+    }
+    public User findUserByEmail(String email){
+        return userRepo.findByEmail(email);
+    }
 
     public Course saveCourse(Course course){
         return courseRepo.save(course);
@@ -52,14 +64,31 @@ public class EntityService{
     public List<Course> findAllCourse(){
         return courseRepo.findAll();
     }
-    
-
     public OrderItem saveItem(OrderItem item){
         return itemRepo.save(item);
+    }
+    public OrderItem findItem(int id){
+        Optional<OrderItem> result = itemRepo.findById(id);
+        if (result.isPresent()){
+            return result.get();
+        }
+        else{
+            throw new RuntimeException("ไม่พบอข้อมูล OrderItem" + id);
+        }
     }
     public Order saveOrder(Order order){
         return orderRepo.save(order);
     }
+    public Order findOrder(int id){
+        Optional<Order> result = orderRepo.findById(id);
+        if (result.isPresent()){
+            return result.get();
+        }
+        else{
+            throw new RuntimeException("ไม่พบอข้อมูล OrderItem" + id);
+        }
+    }
+    
     public Payment savePayment(Payment payment){
         return paymentRepo.save(payment);
     }

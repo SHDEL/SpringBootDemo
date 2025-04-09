@@ -82,14 +82,13 @@ public class DemoApplication {
 		System.out.println(c2.getCourseDetails());;
 
 		System.out.println("**************add Course to cart(Order)**************");
-		OrderItem item1 = new OrderItem( c1, c1.getPrice());
+		OrderItem item1 = new OrderItem(c1, c1.getPrice());
 		entityService.saveItem(item1);
 		OrderItem item2 = new OrderItem(c2, c2.getPrice());
 		entityService.saveItem(item2);
 		Order order1 = new Order(item1.getPrice(), item1);
 		order1.addItem(item2);
 		entityService.saveOrder(order1);
-
 		System.out.println("\n**************purchase Course [Java for Beginners]**************");
 		System.out.println("\n**************purchase Course [Spring Boot Crash Course]**************");
 		u1.purchaseOrder(order1, entityService);

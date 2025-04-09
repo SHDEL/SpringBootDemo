@@ -13,6 +13,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.transaction.Transactional;
@@ -24,7 +25,7 @@ public class Payment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int paymentID;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "userid")
     private User user;
 
@@ -84,7 +85,9 @@ public class Payment {
     public String getStatus() {
         return status;
     }
-    
+    public void setPaymentID(int paymentID) {
+        this.paymentID = paymentID;
+    }
     public void setUser(User user) {
         this.user = user;
     }
@@ -144,6 +147,8 @@ public class Payment {
 
         return sb.toString();
     }
+
+    
     
 
 

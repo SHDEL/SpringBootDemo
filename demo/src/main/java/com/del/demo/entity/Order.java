@@ -87,6 +87,9 @@ public class Order {
     public List<OrderItem> getItemsList() {
         return itemsList;
     }
+    public void setOrderID(int orderID) {
+        this.orderID = orderID;
+    }
     public void setTotalAmount(Double totalAmount) {
         this.totalAmount = totalAmount;
     }
@@ -103,6 +106,8 @@ public class Order {
         return "Order [orderID=" + orderID + ", totalAmount=" + totalAmount + ", status=" + status + ", createdAt="
                 + createdAt + ", itemsList=" + itemsList.toString() + "]";
     }
+
+    
     
     
 

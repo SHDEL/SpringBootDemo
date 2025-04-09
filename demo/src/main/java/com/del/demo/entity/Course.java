@@ -104,6 +104,9 @@ public class Course {
     public String getPictureURL() {
         return pictureURL;
     }
+    public void setCourseID(int courseID) {
+        this.courseID = courseID;
+    }
     public void setTitle(String title) {
         this.title = title;
     }
@@ -151,6 +154,7 @@ public class Course {
                 + ", isFree=" + isFree + ", instructor=" + instructor + ", createdAt=" + createdAt + ", status="
                 + status + ", totalStudent=" + totalStudent + "]";
     }
+    
     
     
 

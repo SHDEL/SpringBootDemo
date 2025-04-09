@@ -4,6 +4,17 @@ window.onload = async function() {
 }
 
 async function getAllCourse(){
+   
+    const response = await fetch('http://localhost:8080/api/users');
+
+    if (!response.ok) {
+        throw new Error('Login failed');
+    }
+
+    const data = await response.json();
+    console.log('Login successful:', data);
+    localStorage.setItem("user", JSON.stringify(data));
+
     try {
         const response = await fetch("http://localhost:8080/api/course");
 
