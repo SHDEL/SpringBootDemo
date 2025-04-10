@@ -1,5 +1,6 @@
 package com.del.demo.controllers;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -51,8 +52,6 @@ public class MyController {
         return entityService.findUserByEmail("del2547.pv@gmail.com");
     }
     
-        
-    
     @GetMapping("/course")
     public List<Course> getAllCourse() {
         return entityService.findAllCourse();
@@ -89,29 +88,26 @@ public class MyController {
         return entityService.saveOrder(order);
     }
     @PostMapping("/payment/{orderid}/{userid}")
-    public Payment createdPayment(@RequestBody Payment payment, @PathVariable int orderid, int userid) {
+    public Payment createdPayment(@RequestBody Payment payment, @PathVariable int orderid, @PathVariable int userid) {
         System.out.println("userid: " + userid);
         Order order = entityService.findOrder(orderid);
         User user = entityService.findUserByID(userid);
         payment.setPaymentID(0);
         payment.setOrder(order);
         payment.setUser(user);
+        payment.setPaymentDate(LocalDateTime.now());
+        payment.setStatus("Waiting for Purchase");
+        payment.setAmount(order.getTotalAmount());
         System.out.println(payment);
-        
         return entityService.savePayment(payment);
 
     }
-    
-    
-    
-    
-    
-    
-    // @GetMapping("/userinfo")
-    // public List<User> getAllUser(){
-    //     return enitityRepo.findAll();
-    // }
-
+    @GetMapping("/payment/{id}")
+    public Payment getPayment(@PathVariable int id){
+        Payment payment = entityService.findPaymentById(id);
+        // System.out.println(payment.getPaymentID());
+        return payment;
+    }
     
 
 }

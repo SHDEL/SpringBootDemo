@@ -25,7 +25,7 @@ public class DemoApplication {
 	}
 	public void test1(){
 		User u1 = new User("Deler", "Kongphop Worawutkasem", "del2547.pv@gmail.com", "Del1311");
-		User u2 = new User("Wisan", "Wisan Tangwongcharoen", "wisan@gmail.com", "wisan1234");
+		User u2 = new User("Peat", "Wichapon Buathong", "peat@gmail.com", "peat1234");
 		User u3 = new User("Adam", "Adam Smith", "adam@gmail.com", "adam1234");
 		System.out.println("**************add new User already**************");
 		System.out.println(u1);

@@ -9,102 +9,107 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-</head>
+    <script src="payment.js" defer></script>
+
+
+
+  </head>
 <body>
-    <div class="container my-5">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-          <h4 class="fw-bold">Checkout</h4>
-          <a href="#" class="text-danger text-decoration-none">Cancel</a>
+  <div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h4 class="text-orange fw-bold">ZapSkills</h4>
+      <a href="#" class="text-decoration-none text-danger">Cancel</a>
+    </div>
+
+    <div class="row">
+      <!-- Left Column: Billing and Payment -->
+      <div class="col-md-6 mb-4">
+        <h3 class="mb-3">Checkout</h3>
+        <div class="mb-3">
+          <label for="country" class="form-label">Billing address</label>
+          <select class="form-select" id="country">
+            <option selected>Thailand</option>
+            <option>USA</option>
+            <option>Japan</option>
+          </select>
         </div>
-        <div class="row">
-          <!-- Left Column -->
-          <div class="col-md-8">
-            <div class="mb-4">
-              <h6 class="fw-bold">Billing address</h6>
-              <label for="country" class="form-label">Country</label>
-              <select class="form-select w-50" id="country">
-                <option selected>Thailand</option>
-                <!-- Add more countries here -->
-              </select>
+        <h5 class="mb-3">Payment method</h5>
+        <div class="payment-selected" style="border: solid #d3d4e1;">
+          <div class="d-flex justify-content-between align-items-center" style="padding: 2%; background-color: #f6f7f9;">
+            <div>
+              <input type="radio" name="payment" checked />
+              <strong class="ms-2">MasterCard **** 4478</strong>
             </div>
-    
-            <div class="mb-4">
-              <h6 class="fw-bold">Payment method</h6>
-              <div class="card p-3 mb-2">
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="paymentMethod" checked>
-                  <label class="form-check-label fw-bold">
-                    <img src="https://img.icons8.com/color/24/000000/mastercard-logo.png" alt="MasterCard" /> MasterCard **** 4478
-                  </label>
-                </div>
-                <div class="ps-4 mt-2">
-                  <p id="user-name" class="mb-1">Name on card: <strong>WICHAPHON BUATHONG</strong></p>
-                  <p class="mb-1">Card number: **** 4478</p>
-                  <p class="mb-0">Expiry date: 11/2028</p>
-                </div>
-              </div>
-    
-              <div class="card p-3 mb-2">
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="paymentMethod">
-                  <label class="form-check-label fw-bold">
-                    Cards
-                    <img src="https://img.icons8.com/color/24/000000/visa.png" />
-                    <img src="https://img.icons8.com/color/24/000000/mastercard.png" />
-                    <img src="https://img.icons8.com/color/24/000000/amex.png" />
-                  </label>
-                </div>
-              </div>
-    
-              <div class="card p-3">
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="paymentMethod">
-                  <label class="form-check-label fw-bold">
-                    <img src="https://img.icons8.com/color/24/000000/paypal.png" alt="PayPal" /> PayPal
-                  </label>
-                </div>
-              </div>
-            </div>
-    
-            <div id="order-content">
-              <h6 class="fw-bold">Order Details (2 courses)</h6>
-              <div class="card mb-2 p-2 d-flex flex-row align-items-center">
-                <img src="https://img.icons8.com/clouds/100/000000/code.png" width="80" class="me-3" />
-                <div>
-                  <h6 class="mb-0">Web Development Bootcamp</h6>
-                  <small class="text-danger">฿450.00</small>
-                </div>
-              </div>
-              <div class="card p-2 d-flex flex-row align-items-center">
-                <img src="https://img.icons8.com/clouds/100/000000/artificial-intelligence.png" width="80" class="me-3" />
-                <div>
-                  <h6 class="mb-0">Data Science Masterclass</h6>
-                  <small class="text-danger">฿850.99</small>
-                </div>
+            <img src="https://img.icons8.com/color/48/000000/mastercard.png" width="30" />
+          </div>
+          <div class="mt-2 p-3">
+            <small>Name on card: <strong id="user-name">WICHAPHON BUATHONG</strong></small><br />
+            <small>Card number: **** 4478</small><br />
+            <small>Expiry date: 11/2028</small>
+          </div>
+          <div class="d-flex justify-content-between align-items-center" style="padding: 2%; background-color: #f6f7f9;">
+            <div>
+              <div style="margin-top: 2%; ">
+                <input type="radio" name="payment" />
+                <strong class="ms-2">Cards</strong>
+                <span class="ms-2">
+                  <img src="https://img.icons8.com/color/32/visa.png"/>
+                  <img src="https://img.icons8.com/color/32/amex.png"/>
+                  <img src="https://img.icons8.com/color/32/mastercard.png"/>
+                </span>
               </div>
             </div>
           </div>
-    
-          <!-- Right Column -->
-          <div class="col-md-4">
-            <div class="card p-4">
-              <h5 class="fw-bold">Order Summary</h5>
-              <div class="d-flex justify-content-between">
-                <span>Original Price:</span>
-                <span>฿1391.00</span>
-              </div>
-              <div class="d-flex justify-content-between fw-bold my-2">
-                <span>Total (2 courses):</span>
-                <span>฿1391.00</span>
-              </div>
-              <p class="small text-muted">By completing your purchase, you agree to these <a href="#">Terms of Use</a>.</p>
-              <button class="btn btn-warning w-100 fw-bold">
-                <i class="bi bi-lock"></i> PAY ฿1391.00
-              </button>
+          <div class="d-flex justify-content-between align-items-center" style="padding: 2%; background-color: #f6f7f9;">
+            <div style="margin-top: 2%;">
+              <input type="radio" name="payment" />
+              <strong class="ms-2">PayPal</strong>
+              <img src="https://img.icons8.com/color/32/paypal.png" class="ms-2"/>
             </div>
           </div>
+        </div>
+        <h5 id="total-course" class="mt-4">Order Details (0 courses)</h5>
+        <div id="order-card" class="col">
+          
         </div>
       </div>
+          <!-- <div class="card mb-2 p-2 d-flex flex-row align-items-center">
+            <img src="https://img.icons8.com/external-flatart-icons-outline-flatarticons/64/000000/external-web-development-programming-and-coding-flatart-icons-outline-flatarticons.png" class="course-img me-3" />
+            <div>
+              <div>Web Development Bootcamp</div>
+              <div class="price">฿450.00</div>
+            </div>
+          </div>
+          <div class="card p-2 d-flex flex-row align-items-center">
+            <img src="https://img.icons8.com/external-flatart-icons-outline-flatarticons/64/000000/external-data-science-artificial-intelligence-flatart-icons-outline-flatarticons.png" class="course-img me-3" />
+            <div>
+              <div>Data Science Masterclass</div>
+              <div class="price">฿850.99</div>
+            </div>
+          </div>
+        </div> -->
+
+      <!-- Right Column: Order Summary -->
+      <div class="col-md-6">
+        <div class="card p-4">
+          <h5 class="mb-3">Order Summary</h5>
+          <div class="d-flex justify-content-between mb-2">
+            <span>Original Price:</span>
+            <strong id="order-price">฿1391.00</strong>
+          </div>
+          <div class="d-flex justify-content-between mb-3">
+            <span id="coursetotal-payment">Total (2 courses):</span>
+            <strong id="total-amount">฿1391.00</strong>
+          </div>
+          <p class="small text-muted">By completing your purchase, you agree to these <a href="#">Terms of Use</a>.</p>
+          <button id="payment-amount" class="btn btn-payment btn-orange w-100">
+            🔒 PAY ฿1391.00
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
     
 </body>
+<script src="payment.js" defer></script>
 </html>

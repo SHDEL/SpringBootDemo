@@ -73,7 +73,7 @@ public class EntityService{
             return result.get();
         }
         else{
-            throw new RuntimeException("ไม่พบอข้อมูล OrderItem" + id);
+            throw new RuntimeException("ไม่พบข้อมูล OrderItem" + id);
         }
     }
     public Order saveOrder(Order order){
@@ -85,12 +85,21 @@ public class EntityService{
             return result.get();
         }
         else{
-            throw new RuntimeException("ไม่พบอข้อมูล OrderItem" + id);
+            throw new RuntimeException("ไม่พบข้อมูล OrderItem" + id);
         }
     }
     
     public Payment savePayment(Payment payment){
         return paymentRepo.save(payment);
+    }
+    public Payment findPaymentById(int id){
+        Optional<Payment> result = paymentRepo.findById(id);
+        if (result.isPresent()){
+            return result.get();
+        }
+        else{
+            throw new RuntimeException("ไม่พบข้อมูล Course " + id);
+        }
     }
     public Enrollments saveEnroll(Enrollments enrollments){
         return enrollRepo.save(enrollments);
