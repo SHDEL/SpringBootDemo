@@ -5,8 +5,6 @@ window.onload = async function () {
     await createOrder(itemID)
 }
 
-
-
 async function createOrder(itemID){
     try {
         const response = await fetch(`http://localhost:8080/api/order/${itemID}`, {
@@ -31,6 +29,7 @@ async function createOrder(itemID){
     }
 
 }
+
 
 async function getOrder(order){
     console.log(order.orderID);
