@@ -143,3 +143,13 @@
     color: #f26a17;
     font-weight: bold;
 }
+.btn-payment{
+    background-color: #f26a17 !important;
+    color: white;
+}
+.btn-payment:hover{
+    background-color: #d65e13 !important;
+}
+/* .payment-selected{
+    
+} */
